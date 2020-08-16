@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import styled from '@emotion/styled';
+
+import Header from './components/Header'
+import SearchForm from './components/SearchForm';
+import FilterForm from './components/FilterForm';
+import ViewCountries from './components/ViewCountries';
+
+import CountryProvider from './context/CountryContext';
+
+const Main = styled.main`
+  background-color: #fafafa;
+  padding-top: 4rem;
+`;
+
+const SectionForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CountryProvider>
+      <Header />
+
+      <Main>
+        <SectionForm>
+          <SearchForm />
+          <FilterForm />
+        </SectionForm>
+
+        
+        <ViewCountries />
+        
+      </Main>
+      
+    </CountryProvider>
   );
 }
 
