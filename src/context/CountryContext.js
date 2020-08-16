@@ -7,30 +7,43 @@ const CountryProvider = (props) => {
 
     const [ countriesResult, saveCountriesResult ] = useState({});
     const [ countryname, saveCountryName ] =  useState('all');
-    const [ error, saveError ] = useState(false);
+    const [ searchcountrybyregion, saveSearchCountryByRegion ] = useState(false);
 
     useEffect ( () => {
-        saveError(false);
-        if(countryname==='all' || countryname==='') {
-            const consultCountriesGeneral = async () => {
-                try {
-                    const countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
-                    saveCountriesResult(countries.data);
-                } catch (error) {
-                    if(error.response) {
-                        saveError(true);
+        if(!searchcountrybyregion) {
+            if(countryname==='all' || countryname==='') {
+                const consultCountriesGeneral = async () => {
+                    try {
+                        const countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
+                        saveCountriesResult(countries.data);
+                    } catch (error) {
+                        if(error.response) {
+                            console.log(error.response)
+                        }
                     }
                 }
+                consultCountriesGeneral();
+            } else {
+                const consultCountriesByName = async () => {
+                    try {
+                        const countries = await axios.get(`https://restcountries.eu/rest/v2/name/${countryname}`);
+                        saveCountriesResult(countries.data);
+                    } catch (error) {
+                        if(error.response) {
+                            console.log(error.response)
+                        }
+                    }
+                }
+                consultCountriesByName();
             }
-            consultCountriesGeneral();
         } else {
             const consultCountriesByName = async () => {
                 try {
-                    const countries = await axios.get(`https://restcountries.eu/rest/v2/name/${countryname}`);
+                    const countries = await axios.get(`https://restcountries.eu/rest/v2/region/${countryname}`);
                     saveCountriesResult(countries.data);
                 } catch (error) {
                     if(error.response) {
-                        saveError(true);
+                        console.log(error.response)
                     }
                 }
             }
@@ -42,7 +55,8 @@ const CountryProvider = (props) => {
         <CountryContext.Provider
             value={{
                 countriesResult,
-                saveCountryName
+                saveCountryName,
+                saveSearchCountryByRegion
             }}
         > {props.children}
         </CountryContext.Provider>

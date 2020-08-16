@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react';
+import React, { Fragment, useContext, useState} from 'react';
 import styled from '@emotion/styled';
 import {CountryContext} from '../context/CountryContext';
 
@@ -28,22 +28,56 @@ const FormSearch = styled.form`
     }
 `;
 
+const SelectForm = styled.select`
+    padding: 2rem 2rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 9px 0px;
+    border: none;
+    text-align: center;
+    font-size: 1.4rem;
+    -webkit-appearance: none;
+    cursor: pointer;
+`;
+
 const SearchForm = () => {
 
-    const { saveCountryName } = useContext(CountryContext);
+    const { saveCountryName, saveSearchCountryByRegion } = useContext(CountryContext);
+
+    const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+
+    const filterSearch = e => {
+        saveSearchCountryByRegion(false);
+        saveCountryName(e.target.value)
+    }
+
+    const filterSearchByRegion = e => {
+        saveSearchCountryByRegion(true);
+        saveCountryName(e.target.value)
+    }
 
     return ( 
-        <FormSearch>
-            <label>
-                <i className="fas fa-search"></i>
-                <input
-                type="text"
-                name="search"
-                placeholder="Search for a country..."
-                onChange={ e => (saveCountryName(e.target.value))}
-                />
-            </label>
-        </FormSearch>
+        <Fragment>
+            <FormSearch>
+                <label>
+                    <i className="fas fa-search"></i>
+                    <input
+                    type="text"
+                    name="search"
+                    placeholder="Search for a country..."
+                    onChange={filterSearch}
+                    />
+                </label>
+            </FormSearch>
+
+            <SelectForm
+                onChange={filterSearchByRegion}
+            >
+                <option value="all">Filter by region</option>
+                {regions.map(region => (
+                    <option key={region} value={region}>{region}</option>
+                ))}
+            </SelectForm>
+        </Fragment>
     );
 }
 

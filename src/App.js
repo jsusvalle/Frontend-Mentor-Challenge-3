@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 import Header from './components/Header'
 import SearchForm from './components/SearchForm';
-import FilterForm from './components/FilterForm';
 import ViewCountries from './components/ViewCountries';
 
 import CountryProvider from './context/CountryContext';
@@ -34,7 +33,6 @@ function App() {
       <Main>
         <SectionForm>
           <SearchForm />
-          <FilterForm />
         </SectionForm>
 
         
