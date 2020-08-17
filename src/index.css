@@ -14,3 +14,10 @@ body {
     font-family: 'Nunito Sans', sans-serif;
 }
 
+.img-cover {
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+    height: 160px;
+    object-fit: cover;
+    vertical-align: top;
+}
