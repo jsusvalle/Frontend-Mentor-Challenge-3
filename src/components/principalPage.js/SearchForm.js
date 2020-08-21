@@ -1,6 +1,7 @@
-import React, { Fragment, useContext, useState} from 'react';
+import React, { Fragment, useContext, useState, useEffect} from 'react';
 import styled from '@emotion/styled';
-import {CountryContext} from '../context/CountryContext';
+
+import CountryContext from '../../context/countryContext';
 
 const FormSearch = styled.form`
     box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 9px 0px;
@@ -41,19 +42,10 @@ const SelectForm = styled.select`
 
 const SearchForm = () => {
 
-    const { saveCountryName, saveSearchCountryByRegion } = useContext(CountryContext);
+    const countryContext = useContext(CountryContext);
+    const { searchCountryByName } = countryContext;
 
     const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
-
-    const filterSearch = e => {
-        saveSearchCountryByRegion(false);
-        saveCountryName(e.target.value)
-    }
-
-    const filterSearchByRegion = e => {
-        saveSearchCountryByRegion(true);
-        saveCountryName(e.target.value)
-    }
 
     return ( 
         <Fragment>
@@ -64,13 +56,12 @@ const SearchForm = () => {
                     type="text"
                     name="search"
                     placeholder="Search for a country..."
-                    onChange={filterSearch}
+                    onChange={e => searchCountryByName(e.target.value)}
                     />
                 </label>
             </FormSearch>
 
             <SelectForm
-                onChange={filterSearchByRegion}
             >
                 <option value="all">Filter by region</option>
                 {regions.map(region => (

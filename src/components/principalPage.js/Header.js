@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const ContenedorHeader = styled.div`
+const ContainerHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -45,7 +45,7 @@ const ToggleBtn = styled.div`
 
 const Header = () => {
     return ( 
-        <ContenedorHeader>
+        <ContainerHeader>
             <h1>Where in the world?</h1>
             <ToggleBtn>
                     <input type="checkbox" id="checkbox" />
@@ -53,7 +53,7 @@ const Header = () => {
                         <p><span><i className="far fa-moon"></i></span> Dark Mode</p>
                     </label>
             </ToggleBtn>
-        </ContenedorHeader>
+        </ContainerHeader>
     );
 }
 

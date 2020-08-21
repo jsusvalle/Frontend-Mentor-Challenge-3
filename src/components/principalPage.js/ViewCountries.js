@@ -2,8 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import styled from '@emotion/styled';
 
 import Country from './Country';
-
-import {CountryContext} from '../context/CountryContext';
+import CountryContext from '../../context/countryContext';
 
 const SectionCountries = styled.div`
     width: 95%;
@@ -26,18 +25,17 @@ const SectionCountries = styled.div`
 
 const ViewCountries = () => {
 
-    // const [error, saveError] = useState(false);
-    const { countriesResult } = useContext(CountryContext);
-
-    if(Object.keys(countriesResult).length === 0) return null;
+    const countryContext = useContext(CountryContext);
+    const { countriesSearch } = countryContext;
 
     return (  
         <SectionCountries>
-            {countriesResult.map(countrie => (<Country 
+            {countriesSearch.map(countrie => (<Country 
                     key={countrie.name}
                     countrie={countrie}
                 />
             ))} 
+            <h1>Hi</h1>
         </SectionCountries>
     );
 }

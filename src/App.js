@@ -1,46 +1,21 @@
-import React, {Fragment} from 'react';
-import styled from '@emotion/styled';
+import React from 'react';
 
-import Header from './components/Header'
-import SearchForm from './components/SearchForm';
-import ViewCountries from './components/ViewCountries';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import CountryState from './context/countryState';
 
-import CountryProvider from './context/CountryContext';
-
-const Main = styled.main`
-  background-color: #fafafa;
-  padding-top: 4rem;
-`;
-
-const SectionForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  margin: 0 auto;
-  padding-bottom: 4rem;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
+import PrincipalPage from './components/principalPage.js/PrincipalPage';
+import InfoCountryPage from './components/infoCountryPage.js/InfoCountryPage';
 
 function App() {
   return (
-    <CountryProvider>
-      <Header />
-
-      <Main>
-        <SectionForm>
-          <SearchForm />
-        </SectionForm>
-
-        
-        <ViewCountries />
-        
-      </Main>
-      
-    </CountryProvider>
+    <CountryState>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={PrincipalPage}/>
+          <Route exact path="/country/:name" component={InfoCountryPage} />
+        </Switch>
+      </Router>
+    </CountryState>
   );
 }
 
