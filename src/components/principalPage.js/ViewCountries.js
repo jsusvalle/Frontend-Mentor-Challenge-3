@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import styled from '@emotion/styled';
 
 import Country from './Country';
@@ -15,10 +15,10 @@ const SectionCountries = styled.div`
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 2rem;
     }
-    @media (min-width: 768px) {
+    @media (min-width: 880px) {
         grid-template-columns: repeat(3, 1fr);
     }
-    @media (min-width: 992px) {
+    @media (min-width: 1170px) {
         grid-template-columns: repeat(4, 1fr);
     }
 `;

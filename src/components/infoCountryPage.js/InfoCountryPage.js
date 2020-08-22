@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Header from '../principalPage.js/Header'; 
+import Header from '../Header'; 
 
 import axios from 'axios';
 import styled from '@emotion/styled';
@@ -92,6 +92,7 @@ const InfoCountryPage = () => {
             saveCountryInfo(result.data);
         }
         consultApiCountryInfo();
+        // eslint-disable-next-line
     }, []);
 
     
@@ -100,7 +101,7 @@ const InfoCountryPage = () => {
         history.goBack();
     }
     
-    if(Object.keys(countryInfo).length === 0) return null
+    if(Object.keys(countryInfo).length === 0) return null;
 
     const { name, flag, nativeName, population, region, subregion, capital, topLevelDomain, currencies,borders, languages} = countryInfo;
     const currencie = currencies[0].name;
@@ -131,11 +132,11 @@ const InfoCountryPage = () => {
                         <div>
                             <p>Top Level Domain: <span>{topLevelDomain}</span></p>
                             <p>Currencies: <span>{currencie}</span></p>
-                            <p>Languages: {languages.map(language => <span className="languages-text">{language.name}</span>)}</p>
+                            <p>Languages: {languages.map(language => <span className="languages-text" key={language.name}>{language.name}</span>)}</p>
                         </div>
                     </div>
 
-                    <p>Border Countries: {borders.map(border => <span className="border">{border}</span>)}</p>
+                    <p>Border Countries: {borders.map(border => <span className="border" key={border}>{border}</span>)}</p>
                 </ContainerRight>
             </ContainerCountryPage>
         </Fragment>

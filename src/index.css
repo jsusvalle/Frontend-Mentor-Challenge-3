@@ -29,6 +29,26 @@ h1 {
     vertical-align: top;
 }
 
+/* DARK THEME */
+
+body.dark-theme,
+body.dark-theme main .css-em2t9v,
+body.dark-theme form.css-6mnoq5 label,
+body.dark-theme form.css-6mnoq5 input,
+body.dark-theme div.css-ffs667 select,
+body.dark-theme .css-1i0dugu button {
+    background-color: hsl(209, 23%, 22%);
+    color: #ffffff;
+}
+
+body.dark-theme main {
+    background-color: hsl(207, 26%, 17%);
+}
+
+body.dark-theme main a.title {
+    color: #ffffff;
+}
+
 
 
 

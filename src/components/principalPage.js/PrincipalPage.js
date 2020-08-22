@@ -1,7 +1,7 @@
 import React, {Fragment, useContext, useEffect} from 'react';
 import styled from '@emotion/styled';
 
-import Header from './Header'
+import Header from '../Header';
 import SearchForm from './SearchForm';
 import ViewCountries from './ViewCountries';
 
@@ -10,6 +10,7 @@ import CountryContext from '../../context/countryContext';
 const Main = styled.main`
     background-color: #fafafa;
     padding-top: 4rem;
+    min-height: 100vh;
 `;
 
 const SectionForm = styled.div`
@@ -28,11 +29,20 @@ const SectionForm = styled.div`
 const PrincipalPage = () => {
 
     const countryContext = useContext(CountryContext);
-    const { saveCountriesApi } = countryContext;
+    const { saveCountriesApi, themeColor } = countryContext;
 
     useEffect( () => {
         saveCountriesApi();
+        // eslint-disable-next-line
     }, []);
+
+    useEffect( () => {
+        if(themeColor) {
+            document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
+        }
+    }, [themeColor]);
 
     return ( 
         <Fragment>

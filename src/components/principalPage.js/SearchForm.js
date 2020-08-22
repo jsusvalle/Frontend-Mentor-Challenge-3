@@ -1,16 +1,16 @@
-import React, { Fragment, useContext, useState, useEffect} from 'react';
+import React, { Fragment, useContext} from 'react';
 import styled from '@emotion/styled';
 
 import CountryContext from '../../context/countryContext';
 
 const FormSearch = styled.form`
     box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 9px 0px;
-    border-radius: 5px;
     margin-bottom: 2rem;
     @media (min-width: 768px) {
         margin-bottom: 0;
     }
     label {
+        border-radius: 5px;
         display: inline-block;
         padding: 1.5rem .5rem;
         width: 100%;

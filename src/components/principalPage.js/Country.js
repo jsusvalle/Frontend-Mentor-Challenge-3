@@ -1,8 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from '@emotion/styled';
-
-import CountryContext from '../../context/countryContext';
 
 const Card = styled.div`
     width: 270px;

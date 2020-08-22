@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from '@emotion/styled';
+
+import CountryContext from '../context/countryContext';
 
 const ContainerHeader = styled.div`
     display: flex;
@@ -24,7 +26,6 @@ const ToggleBtn = styled.div`
     input {
         display: none;
         &:checked~label .fa-moon {
-                    background-color: #ffffff;
                     color: #ffffff;
                 }
     }
@@ -44,11 +45,22 @@ const ToggleBtn = styled.div`
 `;
 
 const Header = () => {
+    const countryContext = useContext(CountryContext);
+    const { changeThemeColor, themeColor } = countryContext;
+
+    const changeTheme = () => {
+        if(themeColor) {
+            changeThemeColor(false);
+        } else {
+            changeThemeColor(true);
+        }
+    }
+
     return ( 
         <ContainerHeader>
             <h1>Where in the world?</h1>
             <ToggleBtn>
-                    <input type="checkbox" id="checkbox" />
+                    <input type="checkbox" id="checkbox" onChange={changeTheme} />
                     <label htmlFor="checkbox">
                         <p><span><i className="far fa-moon"></i></span> Dark Mode</p>
                     </label>

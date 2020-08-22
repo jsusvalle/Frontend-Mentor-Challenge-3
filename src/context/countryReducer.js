@@ -1,4 +1,6 @@
-import { SAVE_ALL_COUNTRIES_API, 
+import {
+    THEME_COLOR, 
+    SAVE_ALL_COUNTRIES_API, 
     SEARCH_COUNTRY_NAME,
     SEARCH_COUNTRY_RESULTS,
     SEARCH_COUNTRY_BY_REGION
@@ -6,6 +8,11 @@ import { SAVE_ALL_COUNTRIES_API,
 
 export default (state, action) => {
     switch(action.type) {
+        case THEME_COLOR:
+            return {
+                ...state,
+                themeColor: action.payload
+            }
         case SAVE_ALL_COUNTRIES_API:
             return {
                 ...state,

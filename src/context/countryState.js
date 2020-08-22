@@ -4,15 +4,18 @@ import axios from 'axios';
 import countryReducer from './countryReducer';
 import countryContext from './countryContext';
 
-import { SAVE_ALL_COUNTRIES_API, 
-        SEARCH_COUNTRY_NAME,
-        SEARCH_COUNTRY_RESULTS,
-        SEARCH_COUNTRY_BY_REGION
+import { 
+    THEME_COLOR,
+    SAVE_ALL_COUNTRIES_API, 
+    SEARCH_COUNTRY_NAME,
+    SEARCH_COUNTRY_RESULTS,
+    SEARCH_COUNTRY_BY_REGION
 } from '../types';
 
 const CountryState = props => {
 
     const initialstate = {
+        themeColor: false,
         countriesAll: [],
         countriesSearch: []
     }
@@ -49,14 +52,23 @@ const CountryState = props => {
         })
     }
 
+    const changeThemeColor = StateTheme => {
+        dispatch({
+            type: THEME_COLOR,
+            payload: StateTheme
+        })
+    }
+
     return (
         <countryContext.Provider
             value={{
+                themeColor: state.themeColor,
                 countriesSearch: state.countriesSearch,
                 countriesAll: state.countriesAll,
                 saveCountriesApi,
                 searchCountryByName,
-                searchCountryByRegion
+                searchCountryByRegion,
+                changeThemeColor
             }}
         >
             {props.children}
