@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import {useParams, useHistory} from 'react-router-dom'
 
 const ContainerCountryPage = styled.div`
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
     margin-top: 5rem;
     @media (min-width: 768px) {

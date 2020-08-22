@@ -25,6 +25,7 @@ const FormSearch = styled.form`
         input {
             border: none;
             font-size: 1.4rem;
+            outline: none;
         }
     }
 `;
@@ -36,6 +37,7 @@ const SelectForm = styled.select`
     border: none;
     text-align: center;
     font-size: 1.4rem;
+    outline: none;
     -webkit-appearance: none;
     cursor: pointer;
 `;
