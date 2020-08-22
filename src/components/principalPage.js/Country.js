@@ -11,7 +11,6 @@ const Card = styled.div`
     background-color: #ffffff;
     transition: background-color .5s ease;
     &:hover {
-        cursor: pointer;
         background-color: rgba(0,0,0,.2);
     }
     img {
@@ -22,9 +21,14 @@ const Card = styled.div`
         vertical-align: top;
     }
     .title {
+        cursor: pointer;
         font-size: 1.6rem;
+        text-decoration: none;
+        color: #000;
+        margin-top: 3rem;
+        display: inline-block;
     }
-    h3, p {
+    .title, p {
         font-weight: bold;
         margin-left: 3rem;
     }
@@ -38,9 +42,6 @@ const Card = styled.div`
 
 const Country = ({countrie}) => {
 
-    const countryContext = useContext(CountryContext);
-    const { selectInfoCountry } = countryContext;
-
     const { flag, name, population, region, capital} = countrie;
 
     return (  
@@ -48,11 +49,10 @@ const Country = ({countrie}) => {
             
         >
             <img loading="lazy" src={flag} alt={name} />
-            <h3 className="title">{name}</h3>
+            <Link to={`/country/${countrie.alpha2Code}`} className="title">{name}</Link>
             <p>Population: <span>{population}</span></p>
             <p>Region: <span>{region}</span></p>
             <p>Capital: <span>{capital}</span></p>
-            <Link to={`/country/${countrie.alpha2Code}`} onClick={() => selectInfoCountry(countrie)} >{name}</Link>
         </Card>
     );
 }

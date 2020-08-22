@@ -35,7 +35,6 @@ const ViewCountries = () => {
                     countrie={countrie}
                 />
             ))} 
-            <h1>Hi</h1>
         </SectionCountries>
     );
 }

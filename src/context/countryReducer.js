@@ -1,7 +1,7 @@
 import { SAVE_ALL_COUNTRIES_API, 
     SEARCH_COUNTRY_NAME,
     SEARCH_COUNTRY_RESULTS,
-    SELECT_COUNTRY_INFO
+    SEARCH_COUNTRY_BY_REGION
 } from '../types';
 
 export default (state, action) => {
@@ -17,14 +17,15 @@ export default (state, action) => {
                 countriesSearch: action.payload
             }
         case SEARCH_COUNTRY_NAME:
+            let text = action.payload.toLowerCase();
             return {
                 ...state,
-                countriesSearch: state.countriesAll.filter(country => country.name === action.payload)
+                countriesSearch: state.countriesAll.filter(country => country.name.toLowerCase().indexOf(text) !== -1)
             }
-        case SELECT_COUNTRY_INFO:
+        case SEARCH_COUNTRY_BY_REGION:
             return {
                 ...state,
-                countrySelect: action.payload
+                countriesSearch: state.countriesAll.filter(country => country.region.indexOf(action.payload) !== -1)
             }
         default:
             return state;

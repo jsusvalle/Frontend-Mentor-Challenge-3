@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={PrincipalPage}/>
-          <Route exact path="/country/:name" component={InfoCountryPage} />
+          <Route exact path="/country/:alpha2Code" component={InfoCountryPage} />
         </Switch>
       </Router>
     </CountryState>

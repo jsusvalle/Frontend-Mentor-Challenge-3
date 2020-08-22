@@ -43,7 +43,7 @@ const SelectForm = styled.select`
 const SearchForm = () => {
 
     const countryContext = useContext(CountryContext);
-    const { searchCountryByName } = countryContext;
+    const { searchCountryByName, searchCountryByRegion } = countryContext;
 
     const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
@@ -62,8 +62,9 @@ const SearchForm = () => {
             </FormSearch>
 
             <SelectForm
+                onChange={e => searchCountryByRegion(e.target.value)}
             >
-                <option value="all">Filter by region</option>
+                <option value="">Filter by region</option>
                 {regions.map(region => (
                     <option key={region} value={region}>{region}</option>
                 ))}

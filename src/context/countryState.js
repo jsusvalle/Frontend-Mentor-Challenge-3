@@ -7,15 +7,14 @@ import countryContext from './countryContext';
 import { SAVE_ALL_COUNTRIES_API, 
         SEARCH_COUNTRY_NAME,
         SEARCH_COUNTRY_RESULTS,
-        SELECT_COUNTRY_INFO
+        SEARCH_COUNTRY_BY_REGION
 } from '../types';
 
 const CountryState = props => {
 
     const initialstate = {
         countriesAll: [],
-        countriesSearch: [],
-        countrySelect: null
+        countriesSearch: []
     }
 
     const [state, dispatch] = useReducer(countryReducer, initialstate);
@@ -43,10 +42,10 @@ const CountryState = props => {
         })
     }
 
-    const selectInfoCountry = countryInfo => {
+    const searchCountryByRegion = region => {
         dispatch({
-            type: SELECT_COUNTRY_INFO,
-            payload: countryInfo
+            type: SEARCH_COUNTRY_BY_REGION,
+            payload: region
         })
     }
 
@@ -57,7 +56,7 @@ const CountryState = props => {
                 countriesAll: state.countriesAll,
                 saveCountriesApi,
                 searchCountryByName,
-                selectInfoCountry
+                searchCountryByRegion
             }}
         >
             {props.children}
